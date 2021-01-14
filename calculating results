@@ -1,0 +1,42 @@
+    results_stats_dic = {}
+    n_images = len(results_dic)
+    n_dogs_img = 0
+    for image in results_dic:
+        if results_dic[image][3] == 1:
+            n_dogs_img += 1
+    n_notdogs_img = n_images - n_dogs_img
+    n_match = 0
+    for image in results_dic:
+        if results_dic[image][2] ==1:
+            n_match += 1
+    n_correct_dogs = 0
+    for image in results_dic:
+        if results_dic[image][3] == 1 and results_dic[image][4] == 1:
+            n_correct_dogs += 1
+    n_correct_notdogs = 0
+    for image in results_dic:
+        if results_dic[image][3] == 0 and results_dic[image][4] == 0:
+            n_correct_notdogs += 1
+    n_correct_breed = 0
+    for image in results_dic:
+        if results_dic[image][3] == 1 and results_dic[image][2] ==1:
+            n_correct_breed += 1
+    pct_match = (n_match/n_images)*100
+    pct_correct_dogs = (n_correct_dogs/n_dogs_img)*100
+    pct_correct_breed = (n_correct_breed/n_dogs_img)*100
+    if n_notdogs_img > 0:
+        pct_correct_notdogs = (n_correct_notdogs/n_notdogs_img)*100
+    else:
+        pct_correct_notdogs = 0
+    results_stats_dic["n_images"] = n_images
+    results_stats_dic["n_dogs_img"] = n_dogs_img
+    results_stats_dic["n_notdogs_img"] = n_notdogs_img
+    results_stats_dic["n_match"] = n_match
+    results_stats_dic["n_correct_dogs"] = n_correct_dogs
+    results_stats_dic["n_correct_notdogs"] = n_correct_notdogs
+    results_stats_dic["n_correct_breed"] = n_correct_breed
+    results_stats_dic["pct_match"] = pct_match
+    results_stats_dic["pct_correct_dogs"] = pct_correct_dogs
+    results_stats_dic["pct_correct_breed"] = pct_correct_breed
+    results_stats_dic["pct_correct_notdogs"] = pct_correct_notdogs
+    return results_stats_dic
