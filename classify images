@@ -1,0 +1,10 @@
+    for image in results_dic:
+        classifier_out = classifier(images_dir + image, model)
+        classifier_l = classifier_out.lower()
+        classifier_st = classifier_l.strip()
+        results_dic[image].append(classifier_st)
+        if results_dic[image][0] in classifier_st:
+            results_dic[image].append(1)
+        else:
+            results_dic[image].append(0)
+    None
